@@ -76,4 +76,28 @@ describe('Thermostat', function() {
     });
   });
 
+  describe('#getCurrentEnergyUsage', function() {
+    it("returns 'low-usage' when temperature is below 18", function() {
+      setTemperatureTo(thermostat, 17);
+
+      expect(thermostat.getCurrentEnergyUsage()).toEqual('low-usage');
+    });
+
+    it("returns 'medium-usage' when temperature is at least 18 and below 25",
+       function() {
+      setTemperatureTo(thermostat, 18);
+
+      expect(thermostat.getCurrentEnergyUsage()).toEqual('medium-usage');
+
+      setTemperatureTo(thermostat, 24);
+
+      expect(thermostat.getCurrentEnergyUsage()).toEqual('medium-usage');
+    });
+
+    it("returns 'high-usage' when temperature is at least 25", function() {
+      setTemperatureTo(thermostat, 25);
+
+      expect(thermostat.getCurrentEnergyUsage()).toEqual('high-usage');
+    });
+  });
 });
