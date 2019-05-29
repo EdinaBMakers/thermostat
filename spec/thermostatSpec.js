@@ -18,4 +18,20 @@ describe('Thermostat', function() {
     });
   });
 
+  describe('#up', function() {
+    it('increases a temperature by 1', function() {
+      thermostat.up();
+
+      expect(thermostat.getTemperature()).toEqual(21);
+    });
+  });
+
+  describe('#down', function() {
+    it('decreases a temperature by 1', function() {
+      thermostat.down();
+
+      expect(thermostat.getTemperature()).toEqual(19);
+    });
+  });
+
 });
