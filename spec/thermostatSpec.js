@@ -35,6 +35,18 @@ describe('Thermostat', function() {
 
       expect(thermostat.getTemperature()).toEqual(25);
     });
+
+    it('cannot increase temperature above 32 if power saving mode is off',
+       function() {
+      thermostat.togglePowerSavingMode()
+      setTemperatureTo(thermostat, 32);
+
+      expect(thermostat.getTemperature()).toEqual(32);
+
+      thermostat.up();
+
+      expect(thermostat.getTemperature()).toEqual(32);
+    });
   });
 
   describe('#down', function() {
